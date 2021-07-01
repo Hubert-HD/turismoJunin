@@ -1,240 +1,152 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
+from .models import Provincia, Categoria, Distrito, Recurso, Coordenadas
+
 # Create your views here.
 def homeView(request):
+  recomendados = []
+  for recurso in Recurso.objects.all().order_by('nombre')[:5]:
+    recomendados.append({
+      'id': recurso.id,
+      'imagen': recurso.image_URL,
+      'nombre': recurso.nombre,
+      'provincia': recurso.distrito_id.nombre,
+      'categoria': recurso.categoria_id.nombre,
+      'corazones': 0
+    })
   context ={
-    "recomendados" : [
-      {
-        "imagen": "http://4.bp.blogspot.com/_03HTyDMRosQ/TRuQPezxK4I/AAAAAAAAAFo/PdmL8Uastyo/s1600/langui.jpg",
-        "nombre": "Laguna De Langui Layo",
-        "provincia": "Canas",
-        "categoria": "Sitio natural",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      }
-    ]
+    "recomendados" : recomendados
   }
   return render(request, 'pages/home.html', context)
 
 def destinoView(request):
+  provincias = []
+  categorias = []
+  naturales = []
+  culturales = []
+  realizaciones = []
+  for provincia in Provincia.objects.all():
+    provincias.append(provincia.nombre)
+  for categoria in Categoria.objects.all():
+    categorias.append(categoria.nombre)
+  for recurso in Recurso.objects.all().order_by('nombre')[:3]:
+    r = {
+      'imagen': recurso.image_URL,
+      'nombre': recurso.nombre,
+      'provincia': recurso.distrito_id.nombre,
+      'categoria': recurso.categoria_id.nombre,
+      'corazones': 0
+    }
+    naturales.append(r)
+    culturales.append(r)
+    realizaciones.append(r)
+
   context ={
+    "provincias": provincias,
+    "categorias": categorias,
     "recomendados" : {
-      "naturales" : [
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        },
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        },
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        }
-      ],
-      "culturales" : [
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        },
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        },
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        }
-      ],
-      "realizaciones" : [
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        },
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        },
-        {
-          "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-          "nombre": "nombre django",
-          "provincia": "provincia django",
-          "categoria": "categoria django",
-          "corazones": 0,
-        }
-      ]
+      "naturales" : naturales,
+      "culturales" : culturales,
+      "realizaciones" : realizaciones
     }
   }
   return render(request, 'pages/destinos.html', context)
 
 def lugarTuristicoView(request, nombre):
-  context = {
-    "imagen": "http://4.bp.blogspot.com/_03HTyDMRosQ/TRuQPezxK4I/AAAAAAAAAFo/PdmL8Uastyo/s1600/langui.jpg",
-    "nombre": nombre,
-    "subtitulo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at enim ligula. Quisque nec leo et eros pharetra venenatis.",
-    "provincia": "Canas",
-    "distrito": "Langui",
-    "categoria": "Sitio Natural",
-    "latitud": -14.499080282861806,
-    "longuitud": -71.16602045996092,
-    "corazones": 0,
-    "parrafos": [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sagittis, ipsueu efficitur molestie, dui lacus rutrum lorem, quis tincidunt mi elit sit amet nisi. Donec cursus orci in enim vehicula, condimentum venenatis mi consectetur. Donec pretium metus et tincidunt tincidunt ipsum dolor sit amet, consectetur adipiscing elit. Nullam sagittis, ipsueu efficitur molestie, dui lacus rutrum lorem, quis tincidunt mi elit sit amet nisi. Donec cursus orci in enim vehicula, condimentum venenatis mi consectetur. Donec pretium metus et tincidunt tincidunt.", "Aliquam egestas justo at dolor faucibus, nec tempus nulla ultrices. Donec sodales ante mi, eu posuere nibh dictum eu. Proin iaculis congue ultricies. Proin vel dui in eros fermentum pellentesque."
-    ],
-    "recomendados" : [
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      },
-      {
-        "imagen": "http://127.0.0.1:8000/static/img/natural.jpg",
-        "nombre": "nombre django",
-        "provincia": "provincia django",
-        "categoria": "categoria django",
-        "corazones": 0,
-      }
-    ]
-  };
-
-  return render(request, 'pages/lugar.html', context)
+  if(Recurso.objects.filter(nombre=nombre).exists()):
+    recomendados = []
+    for recurso in Recurso.objects.all().order_by('nombre')[:5]:
+      recomendados.append({
+        'id': recurso.id,
+        'imagen': recurso.image_URL,
+        'nombre': recurso.nombre,
+        'provincia': recurso.distrito_id.provincia_id.nombre,
+        'categoria': recurso.categoria_id.nombre,
+        'corazones': 0
+      })
+    recurso = Recurso.objects.filter(nombre=nombre).get()
+    context = {
+      "imagen": recurso.image_URL,
+      "nombre": recurso.nombre,
+      "subtitulo": recurso.subtitulo,
+      "provincia": recurso.distrito_id.provincia_id.nombre,
+      "distrito": recurso.distrito_id.nombre,
+      "categoria": recurso.categoria_id.nombre,
+      "corazones": 0,
+      "parrafos": [ recurso.descripcion ],
+      "recomendados" : recomendados
+    };
+    return render(request, 'pages/lugar.html', context)
+  else:
+    return render(request, 'no_econtrado.html')
 
 def getDistritos(request):
-  data = ["Distrito 1.1", "Distrito 1.2", "Distrito 1.3", "Distrito 1.4", "Distrito 1.5", "Distrito 1.6"]
+  provincia = request.GET['provincia']
+  data=[]
+  for distrito in Distrito.objects.filter(provincia_id__nombre=provincia):
+    data.append(distrito.nombre)
   return JsonResponse(data, safe=False)
 
 def getDestinos(request):
-  data = [
-    {
-      "id": "1",
-      "link": "https://myanimelist.net/images/characters/16/309714.jpg",
-      "nombre": "Nombre 1",
-      "provincia": "provincia 1",
-      "distrito": "distrito 1",
-      "categoria": "categoria 1",
-      "corazones": "75"
-    },
-    {
-      "id": "2",
-      "link": "https://myanimelist.net/images/characters/16/309714.jpg",
-      "nombre": "Nombre 1",
-      "provincia": "provincia 1",
-      "distrito": "distrito 1",
-      "categoria": "categoria 1",
-      "corazones": "123"
-    },
-    {
-      "id": "3",
-      "link": "https://myanimelist.net/images/characters/16/309714.jpg",
-      "nombre": "Nombre 3",
-      "provincia": "provincia 1",
-      "distrito": "distrito 1",
-      "categoria": "categoria 1",
-      "corazones": "205"
-    },
-    {
-      "id": "2",
-      "link": "https://myanimelist.net/images/characters/16/309714.jpg",
-      "nombre": "Nombre 1",
-      "provincia": "provincia 1",
-      "distrito": "distrito 1",
-      "categoria": "categoria 1",
-      "corazones": "123"
-    },
-    {
-      "id": "3",
-      "link": "https://myanimelist.net/images/characters/16/309714.jpg",
-      "nombre": "Nombre 3",
-      "provincia": "provincia 1",
-      "distrito": "distrito 1",
-      "categoria": "categoria 1",
-      "corazones": "205"
-    }
-  ]
+  provincia = request.GET["provincia"];
+  distrito = request.GET["distrito"];
+  categoria = request.GET["categoria"];
+
+  recursos = Recurso.objects.all()
+
+  if Provincia.objects.filter(nombre=provincia).exists():
+    recursos = recursos & Recurso.objects.filter(distrito_id__provincia_id__nombre=provincia)
+
+  if Distrito.objects.filter(nombre=distrito).exists():
+    recursos = recursos & Recurso.objects.filter(distrito_id__nombre=distrito)
+
+  if Categoria.objects.filter(nombre=categoria).exists():
+    recursos = recursos & Recurso.objects.filter(categoria_id__nombre=categoria)
+
+  data=[]
+  for recurso in recursos:
+    data.append({
+      'id': recurso.id,
+      'link': recurso.image_URL,
+      'nombre': recurso.nombre,
+      'provincia': recurso.distrito_id.provincia_id.nombre,
+      'distrito': recurso.distrito_id.nombre,
+      'categoria': recurso.categoria_id.nombre,
+      'corazones': 0
+    })
+
   return JsonResponse(data, safe=False)
 
-def getCoordenadas(request, nombre):
+def getCoordenadas(request):
+  nombre = request.GET["nombre"];
+  data = {
+    "latitud": 0,
+    "longuitud": 0,
+  }
+  if Coordenadas.objects.filter(recurso_id__nombre=nombre).exists():
+    coordenada = Coordenadas.objects.filter(recurso_id__nombre=nombre).get()
+    data["latitud"] = coordenada.longitud        #to do:
+    data["longuitud"] = coordenada.latitud     #to do:
+  return JsonResponse(data, safe=False)
 
-  data = [
-    {
-      "latitud": -14.499080282861806,
-      "longuitud": -71.16602045996092,
-    }
-  ]
+def getRecomendaciones(request):
+  provincia = request.GET["provincia"];
+  distrito = request.GET["distrito"];
+  categoria = request.GET["categoria"];
+
+  recursos = Recurso.objects.all().order_by('nombre')[:5]
+
+  data=[]
+
+  for recurso in recursos:
+    data.append({
+      'link': recurso.image_URL,
+      'nombre': recurso.nombre,
+      'provincia': recurso.distrito_id.provincia_id.nombre,
+      'distrito': recurso.distrito_id.nombre,
+      'categoria': recurso.categoria_id.nombre,
+      'corazones': 0
+    })
+
   return JsonResponse(data, safe=False)

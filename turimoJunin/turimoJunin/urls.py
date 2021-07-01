@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home.views import homeView, destinoView, getDistritos, getDestinos, lugarTuristicoView, getCoordenadas
+from home.views import homeView, destinoView, getDistritos, getDestinos, lugarTuristicoView, getCoordenadas, getRecomendaciones
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('destinos/', destinoView, name='destinos'),
     path('destinos/<str:nombre>/', lugarTuristicoView),
     path('api/distritos/', getDistritos, name='api_distritos'),
-    path('api/destinos/', getDestinos, name='api_destinos'),
-    path('api/coordenadas/<str:nombre>/', getCoordenadas),
+    path('api/destinos/', getDestinos),
+    path('api/coordenadas/', getCoordenadas),
+    path('api/recomendaciones/', getRecomendaciones),
 ]

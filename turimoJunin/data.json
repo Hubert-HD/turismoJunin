@@ -1,0 +1,60 @@
+{
+  "categorias": ["Sitios Naturales", "Sitios Culturales", "Folclore", "Realizaciones Contemporaneas", "Eventos y acontecimientos"],
+  "provincias": [
+    {
+      "nombre": "Jauja",
+      "distritos": ["Curicaca", "Distri"]
+    },
+    {
+      "nombre": "Huancayo",
+      "distritos": ["Chilca", "Huancayo"]
+    }
+  ],
+  "recursos": [
+    {
+      "nombre": "BANOS TERMALES DE ACAYA",
+      "categoria": "Sitios Naturales",
+      "ubicacion": {
+        "provincia": "Jauja",
+        "distrito": "Curicaca"
+      },
+      "coordenadas":{
+        "latitud": -75.60566137199999,
+        "longuitud": -11.812899888999937
+      },
+      "imagen": "https://www.rumbosdelperu.com/wp-content/uploads/2017/07/Banos-Termales-Jauja.jpg",
+      "subtitulo": "Acaya, “vaso de metal”, es un pequeño asentamiento humano  donde se encuentran manantiales de aguas termales contiguos al rio Mantaro.",
+      "descripcion": "Acaya vocablo quechua que quiere decir, “vaso de metal”, es un pequeño asentamiento humano localizado en la región quechua (límite con Suni), donde se encuentran manantiales de aguas termales contiguos al rio Mantaro. Los baños termales de Acaya, son aguas de origen volcánico, que brotan del subsuelo, estas aguas contienen muchas propiedades para el bienestar del cuerpo humano, como por ejemplo para aquellas personas que sufren de males de las articulaciones y también de circulación, tiene un alto contenido de minerales como: Azufre, en mayor porcentaje (45%), Yodo (25%), Magnesio (22%) y otros minerales como Cloro, Carbonato, etc. (8%). Son aguas gasificadas naturalmente por el accionar de la presión de los vapores internos de la corteza terrestre, tiene una temperatura que oscila entre los 27º a 34º C. En estos manantiales, las comunidades de Pacte y Acaya han construido dos instalaciones, una de ellas al aire libre de 12 x 5 mts., que es el lugar donde brotan las aguas y se ha acondicionado como piscina, y a unos 200 mts, 03 habitaciones cerradas y techadas. Al interior se han construido tres pozas privadas (una en cada habitación), de material noble de 3.5 x 3.5 mts." 
+    },
+    {
+      "nombre": "BOSQUE DE OCOPILLA",
+      "categoria": "Sitios Naturales",
+      "ubicacion": {
+        "provincia": "Huancayo",
+        "distrito": "Chilca"
+      },
+      "coordenadas":{
+        "latitud": -75.17897206199996,
+        "longuitud": -12.066170348999947
+      },
+      "imagen": "https://www.deperu.com/imagenes/afp/2019/03ced39b6e90e4fc5f092c94d2f907097585d6a6.jpg",
+      "subtitulo": "En los pisos naturales quechua y suni, su clima es templado seco, con una temperatura media anual de 15ºC.",
+      "descripcion": "Ubicado al Este de la capital del distrito de Chilca, en el anexo de Ocopilla, a una altitud promedio de 3,445 m.s.n.m. en los pisos natural quechua y suni, su clima es templado seco, con una temperatura media anual de 15ºC, sus variaciones corresponden por cada 100 metros de altura disminuye 0.53º C (Caso Vertiente oriental). Con una humedad promedio anual de 60% y su régimen mensual bajo es de 55% (Julio - Setiembre) y alta de 75%. El bosque abarca un promedio de 50 hectáreas, es atravesado por el rio Chilca, razón de la división de la quebrada, perteneciendo la parte Sur al anexo de Ocopilla distrito de Chilca, viene a ser una comunidad natural que alberga diversidad de flora nativa propia del lugar como la chachacoma, retama, la papa nativa, ortiga blanca, tasta, taya, silata, hongo forestal, mutuy y mora; árboles nativos como aliso, quinual, quishuar y tanquish. La fauna del lugar lo componen: tarumas, aves como pito o acacllo, palomas de campo, jilgueros, perdices, quilinchos. Las condiciones que ofrece el bosque son propicias para acampar en sus alrededores, así mismo para realizar caminatas y observación de flora y fauna. En la cima del bosque se ubica el mirador natural de Ocopilla, la cual permite una vista panorámica del distrito de Chilca, parte de Huancayo y pueblos del Valle del Mantaro." 
+    },
+    {
+      "nombre": "CAPILLA DEL CERRITO DE LA LIBERTAD",
+      "categoria": "Sitios Culturales",
+      "ubicacion": {
+        "provincia": "Huancayo",
+        "distrito": "Huancayo"
+      },
+      "coordenadas":{
+        "latitud": -75.19613339399996,
+        "longuitud": -12.062622861999955
+      },
+      "imagen": "https://www.dehuancayo.com/images/stories/capilla-cerrito-libertad.jpg",
+      "subtitulo": "La capilla se ubica en lo alto de una colina, llamado Cerrito de la Libertad, desde donde se domina un amplio panorama del Valle del Mantaro. Fue advocada a la Santísima Cruz de Mayo, porque a este lugar fue llevada la primera cruz de Huancayo, luego del derrumbe de la iglesia de la Santísima Trinidad que se ubicaba frente al parque Huamanmarca.",
+      "descripcion": "La capilla se ubica en lo alto de una colina, llamado Cerrito de la Libertad, desde donde se domina un amplio panorama del Valle del Mantaro. Fue advocada a la Santísima Cruz de Mayo, porque a este lugar fue llevada la primera cruz de Huancayo, luego del derrumbe de la iglesia de la Santísima Trinidad que se ubicaba frente al parque Huamanmarca. En la parte frontal se aprecia una imagen del rostro de Cristo de color rojo, el único en el país, que representa la sangre y sufrimiento de los pobladores durante la época de violencia que vivió el país. En la parte posterior una estatua de Cristo crucificado. El techo es de tejas rojas. El interior no cuenta con decoración y solo muestra la Cruz de Mayo. El atrio de la capilla cuenta con una fuente decorada con una cruz y cerca de ella una olla de cerámica. Tiene también jardineras y escalinatas que conducen a una amplia terraza decorada con árboles típicos de la zona y bancas. La Fiesta Patronal o Fiesta de las Cruces se celebra con gran pompa y algarabía por los barrios aledaños al Cerrito de la Libertad durante el mes de mayo. Se danza principalmente la chonguinada, siendo el 3, su día central. Inicia su remodelación en el año 1981 ¿ 1983, luego se restituye la segunda epata el año del 1990 ¿ 1996." 
+    }
+  ]
+}

@@ -127,7 +127,7 @@ function generarDistritos(provincia){
     }
   }
   selection.classList.remove("selection--disabled");
-  fetch('../api/distritos')
+  fetch(`../api/distritos?provincia=${provincia}`)
   .then(response => response.json())
   .then(data => {
     let distritoArray = data;
@@ -164,7 +164,7 @@ function consultarLugares(){
   else{
     document.getElementById("error").style.display = "none";
     let resultado = document.getElementById("resultadosLugares");
-    fetch('../api/destinos')
+    fetch(`../api/destinos?provincia=${provincia}&distrito=${distrito}&categoria=${categoria}`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -176,7 +176,7 @@ function consultarLugares(){
           <h4 class="resultados__titulo">Resultados</h4>
           <h4 class="resultados__respuesta">No se encontraron coincidencias</h4>
         </div>`;
-        fetch('../api/destinos')
+        fetch(`../api/recomendaciones?provincia=${provincia}&distrito=${distrito}&categoria=${categoria}`)
         .then(response => response.json())
         .then(data => {
           let cards = data;
@@ -198,7 +198,7 @@ function consultarLugares(){
                   <span class="corazon__icon"><i class="fas fa-heart"></i></span>
                   <span class="corazon__numero">${corazones}</span>
                 </div>
-                <a class="flecha" href="destinos/${nombre}/"><i class="fas fa-arrow-right"></i></a>
+                <a class="flecha" href="./${nombre}/"><i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
             `;
@@ -235,7 +235,7 @@ function consultarLugares(){
                 <span class="corazon__icon"><i class="fas fa-heart"></i></span>
                 <span class="corazon__numero">${corazones}</span>
               </div>
-              <a class="flecha" href="destinos/${nombre}/"><i class="fas fa-arrow-right"></i></a>
+              <a class="flecha" href="./${nombre}/"><i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
           `;
@@ -287,12 +287,12 @@ activarRecomendaciones();
 // MAPA
 function iniciarMap(){
   let nombre = document.querySelector(".slide__titulo").innerHTML;
-  fetch('../../api/coordenadas/'+ nombre)
+  fetch(`../../api/coordenadas?nombre=${nombre}`)
   .then(response => response.json())
   .then(data => {
-    let coord = {lat: data[0].latitud, lng: data[0].longuitud};
+    let coord = {lat: data.latitud, lng: data.longuitud};
     let map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
+      zoom: 15,
       center: coord
     });
     let marker = new google.maps.Marker({
