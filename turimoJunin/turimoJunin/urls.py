@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/destinos/', getDestinos),
     path('api/coordenadas/', getCoordenadas),
     path('api/recomendaciones/', getRecomendaciones),
+
+    path('accounts/', include('allauth.urls')),
 ]
