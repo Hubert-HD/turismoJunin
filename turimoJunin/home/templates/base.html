@@ -1,3 +1,4 @@
+{% load socialaccount %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -50,7 +51,7 @@
                 <img class="navbar__menu__desplegable__lista__logo__imagen" src="{% static 'img/logo.png' %}" alt="logo.png">
               </div>
               <h3 class="navbar__menu__desplegable__lista__titulo">Ingresa a tu cuenta</h3>
-              <a class="navbar__menu__desplegable__lista__google" href="."><span><i class="fab fa-google"></i></span>Continuar con google</a>
+              <a class="navbar__menu__desplegable__lista__google" href="{% provider_login_url 'google' %}"><span><i class="fab fa-google"></i></span>Continuar con google</a>
             </div>
           </div>
     
